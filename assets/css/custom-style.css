@@ -1,0 +1,111 @@
+@charset "UTF-8";
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+body, html {
+  font-family: "Yu Gothic", yugothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  color: #192639;
+  height: -webkit-fill-available;
+}
+
+.only-sp {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .only-sp {
+    display: inline;
+  }
+}
+
+.only-pc {
+  display: inline;
+}
+@media screen and (max-width: 768px) {
+  .only-pc {
+    display: none;
+  }
+}
+
+.no-horizontal-scrolling {
+  overflow-x: hidden;
+}
+
+.c-hdr__inr {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+}
+.c-hdr__logo {
+  width: 120px;
+  margin-right: auto;
+}
+.c-hdr__btn {
+  display: none;
+}
+.c-hdr__btn.open {
+  display: block;
+}
+.c-hdr__closebtn {
+  display: none;
+}
+.c-hdr__closebtn.open {
+  display: block;
+  z-index: 10;
+}
+.c-hdr__nav {
+  display: none;
+}
+.c-hdr__nav.open {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 40px 24px;
+}
+.c-hdr__nav__lst ul {
+  padding: 0;
+  list-style: none;
+}
+.c-hdr__nav__lst li {
+  padding: 16px 0;
+}
+.c-hdr__nav__lst a {
+  text-decoration: none;
+  font-weight: bold;
+}/*# sourceMappingURL=custom-style.css.map */

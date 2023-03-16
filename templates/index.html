@@ -1,0 +1,33 @@
+<!-- wp:template-part { "slug":"header", "tagName":"header", "className":"c-hdr" } /-->
+<!-- wp:group {"tagName":"main","layout":{"inherit":true}} -->
+<main class="wp-block-group">
+  <section class="fv">
+    <div class="fv__inr">
+      <h1 class="fv__ttl">テストタイトル</h1>
+      <p class="fv__desc">テスト説明</p>
+      <a href="" class="fv__cta">お問い合わせ</a>
+    </div>
+  </section>
+  <!-- wp:query -->
+  <div class="wp-block-query">
+    <!-- wp:query-loop -->
+      <!-- wp:post-featured-image /-->
+      <!-- wp:post-title {"isLink":true} /-->
+      <!-- wp:post-author {"showAvatar":false} /-->
+      <!-- wp:post-date /-->
+      <!-- wp:post-terms {"term":"category"} /-->
+      <!-- wp:post-excerpt /-->
+    <!-- /wp:query-loop -->
+
+    <!-- wp:query-pagination -->
+    <div class="wp-block-query-pagination">
+      <!-- wp:query-pagination-previous /-->
+      <!-- wp:query-pagination-next /-->
+    </div>
+    <!-- /wp:query-pagination -->
+
+  </div>
+  <!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part { "slug":"footer", "tagName":"footer", "className":"c-ftr" } /-->

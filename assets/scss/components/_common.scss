@@ -1,0 +1,28 @@
+@use '../tools/global' as global;
+
+body, html {
+  @include global.fontJp;
+  -webkit-font-smoothing: antialiased;
+  color: global.colors(blue-300);
+  height: -webkit-fill-available;
+}
+
+.only-sp {
+  display: none;
+
+  @include global.mq(md) {
+    display: inline;
+  }
+}
+
+.only-pc {
+  display: inline;
+
+  @include global.mq(md) {
+    display: none;
+  }
+}
+
+.no-horizontal-scrolling{
+  overflow-x: hidden;
+}

@@ -1,0 +1,108 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+
+$_ua-default-font-size: 16px;
+$colors: (
+  blue-100: #008CCD,
+  blue-200: #141532,
+  blue-300: #192639,
+  green-100: #0CF8C0,
+  green-200: #0FCFA2,
+  orange-100: #EA8464,
+  orange-200: #FCD2C5,
+  orange-300: #753420,
+  yellow-100: #E8AD3C,
+  yellow-200: #D2EBF9,
+  yellow-300: #6F5017,
+  error-100: #CF3939,
+  error-200: #FAD8D8,
+  success-100: #04B585,
+  success-200: #C6F0C5,
+  gray-100: #222222,
+  gray-200: #666666,
+  gray-300: #999999,
+  gray-400: #AAAAAA,
+  gray-500: #CCCCCC,
+  gray-600: #E5E5E5,
+  gray-700: #F5F5F5
+);
+
+$regularWidth : 1235px;
+$narrowrWidth : 750px;
+$breakpoints: (
+  'sp': 'screen and (max-width: 768px)',
+  'pc': 'screen and (max-width: 1024px)',
+  'xs': 'screen and (max-width: 320px)',
+) !default;
+
+@function colors($key) {
+  @return map-get($colors, $key);
+}
+
+@mixin fontJp {
+  font-family: "Yu Gothic", yugothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
+  font-weight: 400;
+}
+
+@mixin fontJpBold {
+  font-weight: 700;
+}
+
+@mixin fontEn {
+  font-family: "Barlow Condensed",  "Avenir Next", sans-serif;
+}
+
+@mixin fontEnBold {
+  font-weight: 600;
+}
+
+@function _strip-unit($number) {
+  @if (meta.type-of($number) == 'number' and not math.is-unitless($number)) {
+    @return $number;
+  }
+
+  @return $number / ($number * 0 + 1);
+}
+
+@function mapDeepGet($map, $keys...) {
+  $pmap: $map;
+  @each $key in $keys {
+    @if not map.has-key($pmap, $key) {
+      @return null;
+    }
+    $pmap: map.get($pmap, $key);
+  }
+
+  @return $pmap;
+}
+
+@function px2rem($number) {
+  $result: $number;
+
+  // 単位がpx以外なら値をそのまま返す
+  @if (not(math.unit($number) == 'px')) {
+    @return $result;
+  }
+
+  $result: _strip-unit($number / $_ua-default-font-size) *
+    1rem;
+
+  @return $result;
+}
+
+@function px2em(
+  $number,
+  $parent-number: $_ua-default-font-size
+) {
+  $result: $number;
+
+  // 単位がpx以外なら値をそのまま返す
+  @if (not(math.unit($number) == 'px')) {
+    @return $result;
+  }
+
+  $result: _strip-unit($number / $parent-number) * 1em;
+
+  @return $result;
+}

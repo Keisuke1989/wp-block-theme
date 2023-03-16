@@ -1,0 +1,70 @@
+@use "sass:map";
+@use "sass:meta";
+@use 'functions';
+
+// Variables
+$breakpoint: () !default;
+$_breakpoint: map.merge(
+  (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+  ),
+  $breakpoint
+);
+
+// Mixins
+@mixin mq($size, $range: 'max') {
+  $result: 0;
+
+  @if (meta.type-of($size) == number) {
+    $result: $size;
+  }
+
+  @else {
+    @each $key, $value in $_breakpoint {
+      @if ($key == $size) {
+        $result: $value;
+      }
+    }
+  }
+
+  @if ($range == 'min') {
+    $result: $result + 1;
+  }
+
+  @media screen and (#{$range}-width: #{$result}) {
+    @content;
+  }
+}
+
+@mixin mq-only($screen-min, $screen-max) {
+
+  $result-min: 0;
+  $result-max: 0;
+
+  @if (meta.type-of($screen-min) == number) {
+    $result-min: $screen-min;
+  } else {
+    @each $key, $value in $_breakpoint {
+      @if ($key == $screen-min) {
+        $result-min: $value - 1;
+      }
+    }
+  }
+
+  @if (meta.type-of($screen-max) == number) {
+    $result-max: $screen-max;
+  } else {
+    @each $key, $value in $_breakpoint {
+      @if ($key == $screen-max) {
+        $result-max: $value;
+      }
+    }
+  }
+
+  @media (min-width: #{functions.px2em($result-min)}) and (max-width: #{functions.px2em($result-max)}) {
+    @content;
+  }
+}
